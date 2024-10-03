@@ -1,0 +1,8 @@
+<form #formEquipo="ngForm" (ngSubmit)="agregarEquipo(formEquipo)">
+    <input type="text" [(ngModel)]="nuevoEquipo.nombre" name="nombre" placeholder="Nombre del equipo" required>
+    <input type="text" [(ngModel)]="nuevoEquipo.ciudad" name="ciudad" placeholder="Ciudad" required>
+    <input type="number" [(ngModel)]="nuevoEquipo.fundacion" name="fundacion" placeholder="Año de fundación" required>
+    <input type="text" [(ngModel)]="nuevoEquipo.entrenador" name="entrenador" placeholder="Nombre del entrenador" required>
+    <button type="submit">Agregar Equipo</button>
+  </form>
+  

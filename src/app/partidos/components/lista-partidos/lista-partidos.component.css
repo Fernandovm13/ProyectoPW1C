@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  .container {
+    max-width: 100%; 
+    margin: 0;
+  }
+  
+  header {
+    background-color: #000;
+    padding: 15px;
+    color: white;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    margin-right: 600px;
+  }
+  
+  nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .hero {
+    width: 100%;
+    height: 300px;
+    background-color: #333;
+  }
+  
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+  
+  
+  /* Tabla de lista de partidos */
+  .lista-partidos {
+    text-align: center;
+  }
+  
+  .lista-partidos table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  
+  .lista-partidos table th,
+  .lista-partidos table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .lista-partidos table th {
+    background-color: #62891F;
+    color: black;
+  }
+  
+  .lista-partidos table td {
+    background-color: #f0f0f0;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    margin-top: 40px;
+  }

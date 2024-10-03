@@ -1,0 +1,59 @@
+<div class="container">
+  <header>
+    <div class="header-content">
+      <img class="logo" src="cancha2.0.PNG" alt="Logo de Football League Editor F.V." /> 
+      <h1>Football League Editor F.V.</h1>
+      <nav>
+        <a href="/">Inicio</a>
+        <a href="/equipos">Equipos</a>
+        <a href="/partidos">Partidos</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <img class="hero-img" src="campo.jpeg" alt="Campo de fútbol">
+  </div>
+
+  <div class="container">
+    <h2>Gestión de equipos y jugadores</h2>
+    
+    <div class="form-container">
+      <div class="form-equipo">
+        <h2>Formulario de Equipos</h2>
+        <app-formulario-equipo></app-formulario-equipo>
+      </div>
+      
+      <div class="form-container">
+        <div class="form-jugador">
+    <h2>Formulario de jugadores</h2>
+    <app-formulario-jugador></app-formulario-jugador>
+  </div>
+</div>
+
+    <h3>Lista de equipos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del equipo</th>
+          <th>Ciudad</th>
+          <th>Entrenador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipo of equipos">
+          <td>{{ equipo.nombre }}</td>
+          <td>{{ equipo.ciudad }}</td>
+          <td>{{ equipo.entrenador }}</td>
+        </tr>
+      </tbody>
+    </table>    
+
+    <h3>Lista de Jugadores</h3>
+    <app-lista-jugadores></app-lista-jugadores> 
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Football League Editor F.V. Todos los derechos reservados.</p>
+  </footer>
+</div>

@@ -1,0 +1,27 @@
+<div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Posición</th>
+          <th>Equipo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let jugador of jugadores">
+          <td>{{ jugador.id }}</td>
+          <td>{{ jugador.nombre }}</td>
+          <td>{{ jugador.edad }}</td>
+          <td>{{ jugador.posicion }}</td>
+          <td>{{ jugador.equipo }}</td>
+          <td>
+            <button (click)="eliminarJugador(jugador.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

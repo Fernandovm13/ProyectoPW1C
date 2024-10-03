@@ -1,0 +1,28 @@
+<form #formJugador="ngForm" (ngSubmit)="agregarJugador()">
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="nuevoJugador.nombre" name="nombre" required>
+    </div>
+    <div>
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" [(ngModel)]="nuevoJugador.edad" name="edad" required>
+    </div>
+    <div>
+      <label for="posicion">Posición:</label>
+      <select id="posicion" [(ngModel)]="nuevoJugador.posicion" name="posicion" required>
+        <option *ngFor="let posicion of posiciones" [value]="posicion">{{ posicion }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="numero">Número:</label>
+      <input type="number" id="numero" [(ngModel)]="nuevoJugador.numero" name="numero" required>
+    </div>
+    <div>
+      <label for="equipo">Equipo:</label>
+      <select id="equipo" [(ngModel)]="nuevoJugador.equipo" name="equipo" required>
+        <option *ngFor="let equipo of equipos" [value]="equipo.nombre">{{ equipo.nombre }}</option>
+      </select>
+    </div>
+    <button type="submit">Agregar Jugador</button>
+  </form>
+  

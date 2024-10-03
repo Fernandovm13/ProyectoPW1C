@@ -1,0 +1,26 @@
+<h3>Agregar Partido</h3>
+<div class="form-container">
+    <form (ngSubmit)="agregarPartido()">
+      <label for="fecha-partido">Fecha del partido</label>
+      <input type="date" id="fecha-partido" [(ngModel)]="fecha" name="fecha" required />
+    
+      <label for="hora">Hora</label>
+      <input type="text" id="hora" [(ngModel)]="hora" name="hora" required />
+    
+      <label for="equipo-local">Equipo Local</label>
+      <select id="equipo-local" [(ngModel)]="equipoLocal" name="equipoLocal" required>
+        <option *ngFor="let equipo of equipos" [value]="equipo">{{ equipo }}</option>
+      </select>
+    
+      <label for="equipo-visitante">Equipo Visitante</label>
+      <select id="equipo-visitante" [(ngModel)]="equipoVisitante" name="equipoVisitante" required>
+        <option *ngFor="let equipo of equipos" [value]="equipo">{{ equipo }}</option>
+      </select>
+    
+      <label for="resultado">Resultado</label>
+      <input type="text" id="resultado" [(ngModel)]="resultado" name="resultado" required />
+    
+      <button type="submit" class="btn-agregar">Agregar Partido</button>
+    </form>
+  </div>
+  
