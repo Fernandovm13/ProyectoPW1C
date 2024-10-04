@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JugadorService, Jugador } from '../../jugador.service';
-import { EquipoService, Equipo } from '../../../equipos/equipo.service'; // Importar EquipoService y Equipo
+import { EquipoService, Equipo } from '../../../equipos/equipo.service'; 
 
 @Component({
   selector: 'app-formulario-jugador',
@@ -17,21 +17,21 @@ export class FormularioJugadorComponent implements OnInit {
     equipo: ''
   };
   
-  equipos: Equipo[] = []; // Variable para almacenar los equipos
+  equipos: Equipo[] = []; 
   posiciones: string[] = ['PO', 'DEF', 'MD', 'DEL'];
 
   constructor(
     private jugadorService: JugadorService,
-    private equipoService: EquipoService // Inyectar EquipoService
+    private equipoService: EquipoService 
   ) {}
 
   ngOnInit(): void {
-    this.cargarEquipos(); // Cargar los equipos al iniciar el componente
+    this.cargarEquipos(); 
   }
 
   cargarEquipos(): void {
-    this.equipoService.getEquipos().subscribe((equipos: Equipo[]) => { // Usar EquipoService
-      this.equipos = equipos; // Asignar los equipos a la propiedad
+    this.equipoService.getEquipos().subscribe((equipos: Equipo[]) => { 
+      this.equipos = equipos; 
     });
   }
 
@@ -44,6 +44,6 @@ export class FormularioJugadorComponent implements OnInit {
       posicion: '',
       numero: '',
       equipo: ''
-    }; // Reiniciar el formulario después de agregar el jugador
+    }; 
   }
 }

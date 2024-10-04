@@ -1,23 +1,26 @@
 .form-equipo {
   display: flex; 
+  flex-direction: column; 
   justify-content: flex-start; 
   align-items: flex-start; 
+  width: 100%;
 }
 
 form {
-  border: 1px solid #ddd;
+  border: 1px solid white;
   padding: 20px;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  margin: 0 auto; 
 }
 
 form input, form button {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
@@ -30,4 +33,20 @@ form button {
   transition: background-color 0.3s;
 }
 
+form button:hover {
+  background-color: #4a6e15;
+}
 
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input[type="text"], input[type="number"], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

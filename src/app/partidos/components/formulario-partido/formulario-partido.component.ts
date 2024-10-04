@@ -34,7 +34,7 @@ export class FormularioPartidoComponent implements OnInit {
     };
 
     this.partidoService.agregarPartido(partido);
-    this.partidoAgregado.emit(partido); // Emitir el evento con el nuevo partido
+    this.partidoAgregado.emit(partido); 
     this.limpiarFormulario();
   }
 

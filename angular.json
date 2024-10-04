@@ -99,6 +99,14 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+
+          "options": {
+            "repo": "https://github.com/Fernandovm13/ProyectoPW1C.git",
+            "baseHref": "https://Fernandovm13.github.io/ProyectoPW1C/"
+          }
         }
       }
     }

@@ -7,14 +7,14 @@ export interface Jugador {
   edad: string;
   posicion: string;
   numero: string;
-  equipo: string; // Asociación con el equipo
+  equipo: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class JugadorService {
-  private jugadoresKey = 'jugadores'; // Clave para el local storage
+  private jugadoresKey = 'jugadores'; 
 
   getJugadores(): Observable<Jugador[]> {
     const jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
@@ -23,7 +23,7 @@ export class JugadorService {
 
   agregarJugador(jugador: Jugador): void {
     const jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
-    jugador.id = jugadores.length ? jugadores[jugadores.length - 1].id + 1 : 1; // Asignar nuevo ID
+    jugador.id = jugadores.length ? jugadores[jugadores.length - 1].id + 1 : 1;
     jugadores.push(jugador);
     localStorage.setItem(this.jugadoresKey, JSON.stringify(jugadores));
   }
@@ -34,10 +34,9 @@ export class JugadorService {
     localStorage.setItem(this.jugadoresKey, JSON.stringify(jugadores));
   }
 
-  // Nuevo método para obtener jugadores por equipo
   getJugadoresPorEquipo(equipo: string): Observable<Jugador[]> {
     const jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
     const jugadoresDelEquipo = jugadores.filter((j: Jugador) => j.equipo === equipo);
-    return of(jugadoresDelEquipo); // Retorna solo los jugadores del equipo especificado
+    return of(jugadoresDelEquipo); 
   }
 }

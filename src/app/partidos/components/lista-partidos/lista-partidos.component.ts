@@ -16,10 +16,10 @@ export class ListaPartidosComponent implements OnInit {
   }
 
   cargarPartidos() {
-    this.partidos = this.partidoService.getPartidos(); // Asegúrate de tener este método en tu servicio
+    this.partidos = this.partidoService.getPartidos(); 
   }
 
   onPartidoAgregado(partido: any) {
-    this.partidos.push(partido); // Agregar el nuevo partido a la lista
+    this.partidos.push(partido); 
   }
 }
