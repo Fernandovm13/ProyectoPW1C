@@ -40,4 +40,12 @@ export class EquipoService {
     this.equipos = this.equipos.filter(e => e.id !== id);
     localStorage.setItem('equipos', JSON.stringify(this.equipos));
   }
+
+  actualizarEquipo(equipoEditado: Equipo): void {
+    const index = this.equipos.findIndex(e => e.id === equipoEditado.id);
+    if (index !== -1) {
+      this.equipos[index] = equipoEditado;
+      localStorage.setItem('equipos', JSON.stringify(this.equipos));
+    }
+  }
 }

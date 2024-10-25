@@ -55,9 +55,6 @@ body {
     object-fit: cover;
   }
 
-
-  
-  
   .lista-partidos {
     text-align: center;
   }
@@ -82,6 +79,42 @@ body {
   
   .lista-partidos table td {
     background-color: #f0f0f0;
+  }
+
+  .btn-editar, .btn-eliminar, .btn-guardarcambios {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+  }
+  .btn-editar {
+    background-color: #FFA500;
+    color: white;
+  }
+  
+  .btn-editar:hover {
+    background-color: #ff8c00;
+  }
+
+  .btn-eliminar {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .btn-eliminar:hover {
+    background-color: #d32f2f;
+  }
+
+  .btn-guardarcambios{
+    background-color: #62891F;
+    color: white;
+  }
+
+  .btn-guardarcambios:hover{
+    background-color: #6e9131;
   }
   
   footer {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JugadorService, Jugador } from '../../jugador.service';
-import { EquipoService, Equipo } from '../../../equipos/equipo.service'; 
+import { EquipoService, Equipo } from '../../../equipos/equipo.service';
+import Swal from 'sweetalert2'; 
 
 @Component({
   selector: 'app-formulario-jugador',
@@ -16,27 +17,33 @@ export class FormularioJugadorComponent implements OnInit {
     numero: '',
     equipo: ''
   };
-  
-  equipos: Equipo[] = []; 
+
+  equipos: Equipo[] = [];
   posiciones: string[] = ['PO', 'DEF', 'MD', 'DEL'];
 
   constructor(
     private jugadorService: JugadorService,
-    private equipoService: EquipoService 
+    private equipoService: EquipoService
   ) {}
 
   ngOnInit(): void {
-    this.cargarEquipos(); 
+    this.cargarEquipos();
   }
 
   cargarEquipos(): void {
-    this.equipoService.getEquipos().subscribe((equipos: Equipo[]) => { 
-      this.equipos = equipos; 
+    this.equipoService.getEquipos().subscribe((equipos: Equipo[]) => {
+      this.equipos = equipos;
     });
   }
 
   agregarJugador(): void {
     this.jugadorService.agregarJugador(this.nuevoJugador);
+    Swal.fire({
+      title: '¡Jugador agregado!',
+      text: 'El jugador ha sido agregado correctamente.',
+      icon: 'success',
+      confirmButtonText: 'Aceptar'
+    });
     this.nuevoJugador = {
       id: 0,
       nombre: '',
@@ -44,6 +51,6 @@ export class FormularioJugadorComponent implements OnInit {
       posicion: '',
       numero: '',
       equipo: ''
-    }; 
+    };
   }
 }

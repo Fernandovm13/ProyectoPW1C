@@ -18,7 +18,6 @@
   <div class="container">
     <h2>Gestión de equipos y jugadores</h2>
     
-    <!-- Ajusta los formularios para que estén uno al lado del otro -->
     <div class="form-container">
       <div class="form-equipo">
         <h2>Formulario de Equipos</h2>
@@ -38,16 +37,40 @@
           <th>Nombre del equipo</th>
           <th>Ciudad</th>
           <th>Entrenador</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let equipo of equipos">
-          <td>{{ equipo.nombre }}</td>
-          <td>{{ equipo.ciudad }}</td>
-          <td>{{ equipo.entrenador }}</td>
-        </tr>
+          <ng-container *ngIf="equipoEnEdicion && equipoEnEdicion.id === equipo.id; else vistaNormal">
+            <td>
+              <input type="text" [(ngModel)]="equipoEnEdicion.nombre" />
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="equipoEnEdicion.ciudad" />
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="equipoEnEdicion.entrenador" />
+            </td>
+            <td>
+              <button class="btn-guardar" (click)="guardarEdicion()">Guardar</button>
+              <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar</button>
+            </td>
+          </ng-container>
+        
+          <ng-template #vistaNormal>
+            <td>{{ equipo.nombre }}</td>
+            <td>{{ equipo.ciudad }}</td>
+            <td>{{ equipo.entrenador }}</td>
+            <td>
+              <button class="btn-editar" (click)="editarEquipo(equipo)">Editar</button>
+              <button class="btn-eliminar" (click)="eliminarEquipo(equipo.id)">Eliminar</button>
+            </td>
+          </ng-template>
+        </tr>             
       </tbody>
-    </table>    
+    </table>
+  
 
     <h3>Lista de Jugadores</h3>
     <app-lista-jugadores></app-lista-jugadores> 

@@ -84,37 +84,21 @@ td {
   background-color: #f9f9f9;
 }
 
-.container {
-  max-width: 100%; 
-  margin: 0;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 2rem;
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.btn-ver, .btn-editar {
-  padding:  5px 5px;
+button {
   border: none;
-  border-radius: 5px;
+  padding: 10px 15px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.btn-ver {
-  background-color: #2196F3;
-  color: white;
-}
-
-.btn-ver:hover {
-  background-color: #0b7dda;
+ .btn-editar, .btn-eliminar, .btn-guardar, .btn-cancelar {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin: 5px;
 }
 
 .btn-editar {
@@ -126,12 +110,31 @@ th, td {
   background-color: #ff8c00;
 }
 
-footer {
-  background-color: black;
+.btn-eliminar {
+  background-color: #f44336;
   color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+}
+
+.btn-eliminar:hover {
+  background-color: #d32f2f;
+}
+
+.btn-cancelar {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-cancelar:hover {
+  background-color: #d32f2f;
+}
+
+.btn-guardar {
+  background-color: #62891F;
+  color: white;
+}
+
+.btn-guardar:hover {
+  background-color: #71913a;
 }
 
 .form-container {
@@ -157,13 +160,10 @@ input[type="text"], input[type="number"], select {
   border-radius: 4px;
 }
 
-button {
-  background-color: #62891F;
+footer {
+  background-color: black;
   color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
 }
-
-

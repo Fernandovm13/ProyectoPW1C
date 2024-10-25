@@ -25,4 +25,16 @@ export class PartidoService {
   getPartidos() {
     return JSON.parse(localStorage.getItem(this.localStorageKey) || '[]');
   }
+
+  actualizarPartido(partido: any, index: number) {
+    const partidos = this.getPartidos();
+    partidos[index] = partido;
+    localStorage.setItem(this.localStorageKey, JSON.stringify(partidos));
+  }
+
+  eliminarPartido(index: number) {
+    const partidos = this.getPartidos();
+    partidos.splice(index, 1);
+    localStorage.setItem(this.localStorageKey, JSON.stringify(partidos));
+  }
 }

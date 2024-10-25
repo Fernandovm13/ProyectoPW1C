@@ -2,7 +2,7 @@
 <div class="container">
   <header>
     <div class="header-content">
-      <img class="logo" src="cancha2.0.PNG" alt="Logo de Football League Editor F.V." /> 
+      <img class="logo" src="cancha2.0.PNG" alt="Logo de Football League Editor F.V." />
       <h1>Football League Editor F.V.</h1>
       <nav>
         <a href="/">Inicio</a>
@@ -32,15 +32,40 @@
           <th>Equipo Local</th>
           <th>Equipo Visitante</th>
           <th>Resultado</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let partido of partidos">
-          <td>{{ partido.fecha }}</td>
-          <td>{{ partido.hora }}</td>
-          <td>{{ partido.equipoLocal }}</td>
-          <td>{{ partido.equipoVisitante }}</td>
-          <td>{{ partido.resultado }}</td>
+        <tr *ngFor="let partido of partidos; let i = index">
+          <td>
+            <input *ngIf="partido.editMode" [(ngModel)]="partido.fecha" type="date">
+            <span *ngIf="!partido.editMode">{{ partido.fecha }}</span>
+          </td>
+          <td>
+            <input *ngIf="partido.editMode" [(ngModel)]="partido.hora" type="time">
+            <span *ngIf="!partido.editMode">{{ partido.hora }}</span>
+          </td>
+          <td>
+            <select *ngIf="partido.editMode" [(ngModel)]="partido.equipoLocal">
+              <option *ngFor="let equipo of equipos" [value]="equipo">{{ equipo }}</option>
+            </select>
+            <span *ngIf="!partido.editMode">{{ partido.equipoLocal }}</span>
+          </td>
+          <td>
+            <select *ngIf="partido.editMode" [(ngModel)]="partido.equipoVisitante">
+              <option *ngFor="let equipo of equipos" [value]="equipo">{{ equipo }}</option>
+            </select>
+            <span *ngIf="!partido.editMode">{{ partido.equipoVisitante }}</span>
+          </td>
+          <td>
+            <input *ngIf="partido.editMode" [(ngModel)]="partido.resultado" type="text">
+            <span *ngIf="!partido.editMode">{{ partido.resultado }}</span>
+          </td>
+          <td>
+            <button class="btn-editar" *ngIf="!partido.editMode" (click)="editarPartido(i)">Editar</button>
+            <button class="btn-guardarcambios" *ngIf="partido.editMode" (click)="guardarPartido(i)">Guardar</button>
+            <button class="btn-eliminar" (click)="eliminarPartido(i)">Eliminar</button>
+          </td>
         </tr>
       </tbody>
     </table>

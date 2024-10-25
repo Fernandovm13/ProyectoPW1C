@@ -1,27 +1,46 @@
 <div>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Edad</th>
-          <th>Posición</th>
-          <th>Equipo</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let jugador of jugadores">
-          <td>{{ jugador.id }}</td>
-          <td>{{ jugador.nombre }}</td>
-          <td>{{ jugador.edad }}</td>
-          <td>{{ jugador.posicion }}</td>
-          <td>{{ jugador.equipo }}</td>
-          <td>
-            <button (click)="eliminarJugador(jugador.id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Posición</th>
+        <th>Equipo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let jugador of jugadores">
+        <td>{{ jugador.nombre }}</td>
+        <td>{{ jugador.edad }}</td>
+        <td>{{ jugador.posicion }}</td>
+        <td>{{ jugador.equipo }}</td>
+        <td>
+          <button class="btn-editar" (click)="editarJugador(jugador)">Editar</button>
+          <button class="btn-eliminar" (click)="eliminarJugador(jugador.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="jugadorEditado">
+    <h3>Editar Jugador</h3>
+    <label>Nombre: </label>
+    <input type="text" [(ngModel)]="jugadorEditado.nombre" placeholder="Nombre">
+
+    <label>Edad: </label>
+    <input type="number" [(ngModel)]="jugadorEditado.edad" placeholder="Edad">
+
+    <label>Posición: </label>
+    <select [(ngModel)]="jugadorEditado.posicion">
+      <option *ngFor="let pos of posiciones" [value]="pos">{{ pos }}</option>
+    </select>
+
+    <label>Equipo: </label>
+    <select [(ngModel)]="jugadorEditado.equipo">
+      <option *ngFor="let equipo of equipos" [value]="equipo.nombre">{{ equipo.nombre }}</option>
+    </select>
+
+    <button class="btn-guardarcambios" (click)="guardarEdicion()">Guardar Cambios</button>
   </div>
-  
+</div>

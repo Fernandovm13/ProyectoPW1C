@@ -34,6 +34,15 @@ export class JugadorService {
     localStorage.setItem(this.jugadoresKey, JSON.stringify(jugadores));
   }
 
+  actualizarJugador(jugadorActualizado: Jugador): void {
+    let jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
+    const indice = jugadores.findIndex((j: Jugador) => j.id === jugadorActualizado.id);
+    if (indice !== -1) {
+      jugadores[indice] = jugadorActualizado;  // Actualizar jugador
+      localStorage.setItem(this.jugadoresKey, JSON.stringify(jugadores));
+    }
+  }
+
   getJugadoresPorEquipo(equipo: string): Observable<Jugador[]> {
     const jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
     const jugadoresDelEquipo = jugadores.filter((j: Jugador) => j.equipo === equipo);
