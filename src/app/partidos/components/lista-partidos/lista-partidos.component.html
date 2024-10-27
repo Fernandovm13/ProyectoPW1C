@@ -1,4 +1,3 @@
-<!-- lista-partidos.component.html -->
 <div class="container">
   <header>
     <div class="header-content">
@@ -18,7 +17,7 @@
 
   <section class="gestor-partidos">
     <h2>Gestión de partidos</h2>
-    <app-formulario-partido (partidoAgregado)="onPartidoAgregado($event)"></app-formulario-partido> <!-- Componente de formulario de partidos -->
+    <app-formulario-partido (partidoAgregado)="onPartidoAgregado($event)"></app-formulario-partido>
   </section>
 
   <section class="lista-partidos">
@@ -70,6 +69,20 @@
       </tbody>
     </table>
   </section>
+
+  <section class="tabla-general">
+    <button class="btn-tabla" (click)="mostrarTablaGeneral = !mostrarTablaGeneral">
+      {{ mostrarTablaGeneral ? 'Ocultar Tabla General' : 'Generar Tabla General' }}
+    </button>
+  
+    <app-lista-tabla-general *ngIf="mostrarTablaGeneral"></app-lista-tabla-general>
+  
+    <button *ngIf="mostrarTablaGeneral" (click)="generarPDF()" class="btn-imprimir">
+      Imprimir PDF
+    </button>
+  </section>
+  
+  
 
   <footer>
     <p>&copy; 2024 Football League Editor F.V. Todos los derechos reservados. Prohibida la reproducción total o parcial de este sitio sin autorización.</p>

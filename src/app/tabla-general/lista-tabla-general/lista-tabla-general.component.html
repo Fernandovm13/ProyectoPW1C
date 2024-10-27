@@ -1,0 +1,26 @@
+<table id="tablaGeneralPDF">
+  <thead>
+      <tr>
+          <th>Equipo</th>
+          <th>Puntos</th>
+          <th>Jugados</th>
+          <th>Ganados</th>
+          <th>Empatados</th>
+          <th>Perdidos</th>
+          <th>Goles a Favor</th>
+          <th>Goles en Contra</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let equipo of tablaGeneral">
+          <td>{{ equipo.equipo }}</td>
+          <td>{{ equipo.puntos }}</td>
+          <td>{{ equipo.jugados }}</td>
+          <td>{{ equipo.ganados }}</td>
+          <td>{{ equipo.empatados }}</td>
+          <td>{{ equipo.perdidos }}</td>
+          <td>{{ equipo.golesFavor }}</td>
+          <td>{{ equipo.golesContra }}</td>
+      </tr>
+  </tbody>
+</table>
