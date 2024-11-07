@@ -33,11 +33,20 @@ export class FormularioJugadorComponent implements OnInit {
   cargarEquipos(): void {
     this.equipoService.getEquipos().subscribe((equipos: Equipo[]) => {
       this.equipos = equipos;
+      console.log(equipos)
     });
+    
   }
 
   agregarJugador(): void {
-    this.jugadorService.agregarJugador(this.nuevoJugador);
+    this.jugadorService.agregarJugador(this.nuevoJugador).subscribe({
+      next: (response) => {
+        console.log(response)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
     Swal.fire({
       title: '¡Jugador agregado!',
       text: 'El jugador ha sido agregado correctamente.',

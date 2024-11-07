@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Equipo {
   id: number;
   nombre: string;
   ciudad: string;
-  fundacion: string;
+  anioFundacion: string;
   entrenador: string;
 }
 
@@ -13,39 +14,26 @@ export interface Equipo {
   providedIn: 'root'
 })
 export class EquipoService {
-  private equipos: Equipo[] = [];
+  private apiUrl = 'http://localhost:3000/api/equipos'; 
 
-  constructor() {
-    this.cargarEquiposDesdeLocalStorage();
-  }
-
-  private cargarEquiposDesdeLocalStorage(): void {
-    const equiposGuardados = localStorage.getItem('equipos');
-    if (equiposGuardados) {
-      this.equipos = JSON.parse(equiposGuardados);
-    }
-  }
+  constructor(private http: HttpClient) {}
 
   getEquipos(): Observable<Equipo[]> {
-    return of(this.equipos); 
+    return this.http.get<Equipo[]>(this.apiUrl);
   }
 
-  agregarEquipo(equipo: Equipo): void {
-    equipo.id = this.equipos.length > 0 ? this.equipos[this.equipos.length - 1].id + 1 : 1;
-    this.equipos.push(equipo);
-    localStorage.setItem('equipos', JSON.stringify(this.equipos));
+  agregarEquipo(equipo: Equipo): Observable<Equipo> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+  });
+  return this.http.post<Equipo>(this.apiUrl, equipo, { headers });
   }
 
-  eliminarEquipo(id: number): void {
-    this.equipos = this.equipos.filter(e => e.id !== id);
-    localStorage.setItem('equipos', JSON.stringify(this.equipos));
+  eliminarEquipo(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  actualizarEquipo(equipoEditado: Equipo): void {
-    const index = this.equipos.findIndex(e => e.id === equipoEditado.id);
-    if (index !== -1) {
-      this.equipos[index] = equipoEditado;
-      localStorage.setItem('equipos', JSON.stringify(this.equipos));
-    }
+  actualizarEquipo(equipo: Equipo): Observable<Equipo> {
+    return this.http.put<Equipo>(`${this.apiUrl}/${equipo.id}`, equipo);
   }
 }

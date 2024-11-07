@@ -11,8 +11,6 @@ import Swal from 'sweetalert2';
 export class ListaEquiposComponent implements OnInit {
   equipos: Equipo[] = [];
   equipoEnEdicion: Equipo | null = null;
-  jugadoresDelEquipo: Jugador[] = [];
-  equipoSeleccionado: string = '';
 
   constructor(
     private equipoService: EquipoService,
@@ -24,9 +22,26 @@ export class ListaEquiposComponent implements OnInit {
   }
 
   cargarEquipos(): void {
-    this.equipoService.getEquipos().subscribe(equipos => {
-      this.equipos = equipos;
-    });
+    this.equipoService.getEquipos().subscribe(
+      equipos => {
+        this.equipos = equipos;
+      },
+      error => {
+        Swal.fire('Error', 'No se pudieron cargar los equipos.', 'error');
+      }
+    );
+  }
+
+  agregarEquipo(equipo: Equipo): void {
+    this.equipoService.agregarEquipo(equipo).subscribe(
+      () => {
+        this.cargarEquipos();
+        Swal.fire('¡Agregado!', 'El equipo ha sido agregado exitosamente.', 'success');
+      },
+      error => {
+        Swal.fire('Error', 'No se pudo agregar el equipo.', 'error');
+      }
+    );
   }
 
   editarEquipo(equipo: Equipo): void {
@@ -35,9 +50,16 @@ export class ListaEquiposComponent implements OnInit {
 
   guardarEdicion(): void {
     if (this.equipoEnEdicion) {
-      this.equipoService.actualizarEquipo(this.equipoEnEdicion);
-      this.equipoEnEdicion = null;
-      Swal.fire('¡Actualizado!', 'El equipo ha sido editado correctamente.', 'success');
+      this.equipoService.actualizarEquipo(this.equipoEnEdicion).subscribe(
+        () => {
+          this.cargarEquipos();
+          this.equipoEnEdicion = null;
+          Swal.fire('¡Actualizado!', 'El equipo ha sido editado correctamente.', 'success');
+        },
+        error => {
+          Swal.fire('Error', 'No se pudo actualizar el equipo.', 'error');
+        }
+      );
     }
   }
 
@@ -57,9 +79,15 @@ export class ListaEquiposComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.equipoService.eliminarEquipo(id);
-        this.cargarEquipos();
-        Swal.fire('¡Eliminado!', 'El equipo ha sido eliminado.', 'success');
+        this.equipoService.eliminarEquipo(id).subscribe(
+          () => {
+            this.cargarEquipos();
+            Swal.fire('¡Eliminado!', 'El equipo ha sido eliminado.', 'success');
+          },
+          error => {
+            Swal.fire('Error', 'No se pudo eliminar el equipo.', 'error');
+          }
+        );
       }
     });
   }

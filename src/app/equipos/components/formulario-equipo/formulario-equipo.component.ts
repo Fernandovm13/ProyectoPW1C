@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class FormularioEquipoComponent {
   @Input() equipoEditar?: Equipo;
-  nuevoEquipo: Equipo = { id: 0, nombre: '', ciudad: '', fundacion: '', entrenador: '' };
+  nuevoEquipo: Equipo = { id: 0, nombre: '', ciudad: '', anioFundacion: '', entrenador: '' };
   editarModo: boolean = false;
 
   constructor(private equipoService: EquipoService) {}
@@ -23,8 +23,24 @@ export class FormularioEquipoComponent {
   }
 
   agregarEquipo(form: NgForm): void {
+    console.log(this.nuevoEquipo);
+    const newTeam = { 
+      id: this.nuevoEquipo.id, 
+      nombre: this.nuevoEquipo.nombre, 
+      ciudad: this.nuevoEquipo.ciudad, 
+      anioFundacion: this.nuevoEquipo.anioFundacion, 
+      entrenador: this.nuevoEquipo.entrenador 
+    };
+    console.log(newTeam);
+    
     if (form.valid) {
-      this.equipoService.agregarEquipo(this.nuevoEquipo);
+      this.equipoService.agregarEquipo(newTeam).subscribe({
+        next: (response) => {
+          console.log(response)
+        },
+        error: (err) => {
+        console.log(err);
+        }});
       Swal.fire({
         title: '¡Equipo agregado!',
         text: 'El equipo ha sido agregado correctamente.',

@@ -22,9 +22,11 @@ export class ListaJugadoresComponent implements OnInit {
   ngOnInit(): void {
     this.cargarJugadores();
     this.cargarEquipos();
+    
   }
 
   cargarJugadores(): void {
+   
     this.jugadorService.getJugadores().subscribe(data => {
       this.jugadores = data;
     });

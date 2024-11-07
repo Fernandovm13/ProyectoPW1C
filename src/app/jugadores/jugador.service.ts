@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Jugador {
   id: number;
@@ -14,38 +15,27 @@ export interface Jugador {
   providedIn: 'root'
 })
 export class JugadorService {
-  private jugadoresKey = 'jugadores'; 
+  private apiUrl = 'http://localhost:3000/api/jugadores'; 
+
+  constructor(private http: HttpClient) {}
 
   getJugadores(): Observable<Jugador[]> {
-    const jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
-    return of(jugadores);
+    return this.http.get<Jugador[]>(this.apiUrl);
   }
 
-  agregarJugador(jugador: Jugador): void {
-    const jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
-    jugador.id = jugadores.length ? jugadores[jugadores.length - 1].id + 1 : 1;
-    jugadores.push(jugador);
-    localStorage.setItem(this.jugadoresKey, JSON.stringify(jugadores));
+  agregarJugador(jugador: Jugador): Observable<Jugador> {
+    return this.http.post<Jugador>(this.apiUrl, jugador);
   }
 
-  eliminarJugador(id: number): void {
-    let jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
-    jugadores = jugadores.filter((j: Jugador) => j.id !== id);
-    localStorage.setItem(this.jugadoresKey, JSON.stringify(jugadores));
+  eliminarJugador(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  actualizarJugador(jugadorActualizado: Jugador): void {
-    let jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
-    const indice = jugadores.findIndex((j: Jugador) => j.id === jugadorActualizado.id);
-    if (indice !== -1) {
-      jugadores[indice] = jugadorActualizado;  // Actualizar jugador
-      localStorage.setItem(this.jugadoresKey, JSON.stringify(jugadores));
-    }
+  actualizarJugador(jugador: Jugador): Observable<Jugador> {
+    return this.http.put<Jugador>(`${this.apiUrl}/${jugador.id}`, jugador);
   }
 
   getJugadoresPorEquipo(equipo: string): Observable<Jugador[]> {
-    const jugadores = JSON.parse(localStorage.getItem(this.jugadoresKey) || '[]');
-    const jugadoresDelEquipo = jugadores.filter((j: Jugador) => j.equipo === equipo);
-    return of(jugadoresDelEquipo); 
+    return this.http.get<Jugador[]>(`${this.apiUrl}?equipo=${equipo}`);
   }
 }
